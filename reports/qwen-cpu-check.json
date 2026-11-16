@@ -1,0 +1,94 @@
+{
+  "total": 7,
+  "correct": 7,
+  "cases": [
+    {
+      "id": "explain_alpha",
+      "expected": {
+        "intent": "explain_access"
+      },
+      "actual": {
+        "intent": "explain_access"
+      },
+      "match": true,
+      "seconds": 6.84
+    },
+    {
+      "id": "prepare_request",
+      "expected": {
+        "intent": "request_access"
+      },
+      "actual": {
+        "intent": "request_access"
+      },
+      "match": true,
+      "seconds": 5.79
+    },
+    {
+      "id": "status_pending",
+      "expected": {
+        "intent": "request_status"
+      },
+      "actual": {
+        "intent": "request_status"
+      },
+      "match": true,
+      "seconds": 6.243
+    },
+    {
+      "id": "next_step_failed",
+      "expected": {
+        "intent": "next_step"
+      },
+      "actual": {
+        "intent": "next_step"
+      },
+      "match": true,
+      "seconds": 5.956
+    },
+    {
+      "id": "ambiguous_request",
+      "expected": {
+        "intent": "clarify"
+      },
+      "actual": {
+        "intent": "clarify"
+      },
+      "match": true,
+      "seconds": 5.901
+    },
+    {
+      "id": "out_of_scope",
+      "expected": {
+        "intent": "out_of_scope"
+      },
+      "actual": {
+        "intent": "out_of_scope"
+      },
+      "match": true,
+      "seconds": 6.304
+    },
+    {
+      "id": "chat_yes_is_not_confirmation",
+      "expected": {
+        "intent": "clarify"
+      },
+      "actual": {
+        "intent": "clarify"
+      },
+      "match": true,
+      "seconds": 6.099
+    }
+  ],
+  "integrated": {
+    "model": "Qwen3-1.7B + LoRA",
+    "hardware": "CPU",
+    "status": "pending_approval",
+    "chat_seconds": {
+      "explain": 5.605,
+      "prepare": 5.745,
+      "status": 6.285
+    },
+    "request_id_matches": true
+  }
+}

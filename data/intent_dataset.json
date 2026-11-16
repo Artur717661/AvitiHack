@@ -1,0 +1,1842 @@
+{
+  "metadata": {
+    "data_version": "intent-alpha-v0.1",
+    "status": "pending_analyst_review",
+    "synthetic": true,
+    "language": "ru",
+    "created_at": "2026-11-12",
+    "created_by": "assistant-authored synthetic examples",
+    "team_scope": "alpha",
+    "resource": "team_space",
+    "input_fields": [
+      "message",
+      "workflow_state"
+    ],
+    "target_format": {
+      "intent": "one of six existing router labels"
+    },
+    "test_status": "provisional",
+    "test_frozen": false,
+    "provenance": "Manually authored synthetic situations and paraphrases for this prototype. Not Avito policies, not real conversations, not model outputs. No seed or contract-fixture text was copied into test.",
+    "split_method": "Situation families assigned to splits before paraphrases. No family_id crosses splits; no random row split. Family labels describe intended distinctions, not proof of semantic independence.",
+    "counts": {
+      "train": 108,
+      "dev": 24,
+      "test": 30,
+      "total": 162
+    },
+    "limitations": [
+      "Pending analyst review; labels and family boundaries may change. Test is provisional, visible during preparation and not a frozen blind holdout.",
+      "One synthetic team and one supported resource; no evidence for cross-team generalization or backend ACL correctness.",
+      "Balanced small synthetic corpus with narrow subfamilies; shared scenario vocabulary and related meanings remain across splits. Manual semantic leakage review is required.",
+      "No training, evaluation, quality result or corpus acceptance is claimed by creating this file.",
+      "Intent is a recommendation, not authorization. Chat agreement never confirms a draft; only backend confirmation of a concrete version may submit.",
+      "No user_id, role, team identity, source text, operation IDs or confirmation flags are model inputs. Backend supplies actor context and enforces state independently.",
+      "Test explain_access in pending_approval and out_of_scope access requests are analyst-review boundary cases, not approved policy decisions."
+    ]
+  },
+  "families": [
+    {
+      "family_id": "train-prerequisites",
+      "split": "train",
+      "intent": "explain_access",
+      "description": "Условия и сведения до оформления доступа."
+    },
+    {
+      "family_id": "train-approver-role",
+      "split": "train",
+      "intent": "explain_access",
+      "description": "Объяснение участника согласования, без запроса результата."
+    },
+    {
+      "family_id": "train-confirmation-rule",
+      "split": "train",
+      "intent": "explain_access",
+      "description": "Объяснение отдельного подтверждения версии черновика."
+    },
+    {
+      "family_id": "train-self-initiation",
+      "split": "train",
+      "intent": "request_access",
+      "description": "Явная подготовка первой собственной заявки."
+    },
+    {
+      "family_id": "train-first-task",
+      "split": "train",
+      "intent": "request_access",
+      "description": "Явная подготовка для первого задания стажёра."
+    },
+    {
+      "family_id": "train-corrected-failure",
+      "split": "train",
+      "intent": "request_access",
+      "description": "Явное начало подготовки после ошибки и исправления сведений; без отправки."
+    },
+    {
+      "family_id": "train-approval-result",
+      "split": "train",
+      "intent": "request_status",
+      "description": "Состояние текущего согласования собственной заявки."
+    },
+    {
+      "family_id": "train-after-refresh",
+      "split": "train",
+      "intent": "request_status",
+      "description": "Чтение сохранённого состояния после перезагрузки интерфейса."
+    },
+    {
+      "family_id": "train-timeout-result",
+      "split": "train",
+      "intent": "request_status",
+      "description": "Проверка результата после неизвестного исхода отправки."
+    },
+    {
+      "family_id": "train-failure-remedy",
+      "split": "train",
+      "intent": "next_step",
+      "description": "Следующее допустимое действие при ошибке без автоматической повторной записи."
+    },
+    {
+      "family_id": "train-after-cancellation",
+      "split": "train",
+      "intent": "next_step",
+      "description": "Дальнейшие действия после отмены, а не проверка её факта."
+    },
+    {
+      "family_id": "train-during-approval",
+      "split": "train",
+      "intent": "next_step",
+      "description": "Рекомендация действия в ожидании согласования."
+    },
+    {
+      "family_id": "train-chat-consent",
+      "split": "train",
+      "intent": "clarify",
+      "description": "Короткое согласие в чате не подтверждает операцию."
+    },
+    {
+      "family_id": "train-missing-reference",
+      "split": "train",
+      "intent": "clarify",
+      "description": "Не указан предмет просьбы."
+    },
+    {
+      "family_id": "train-exclusive-alternatives",
+      "split": "train",
+      "intent": "clarify",
+      "description": "Пользователь не выбирает между объяснением и черновиком."
+    },
+    {
+      "family_id": "train-expense",
+      "split": "train",
+      "intent": "out_of_scope",
+      "description": "Возмещение расходов вне доступа в team_space."
+    },
+    {
+      "family_id": "train-software",
+      "split": "train",
+      "intent": "out_of_scope",
+      "description": "Установка приложений вне доступа в team_space."
+    },
+    {
+      "family_id": "train-calendar",
+      "split": "train",
+      "intent": "out_of_scope",
+      "description": "Календарь и коммуникации вне сценария."
+    },
+    {
+      "family_id": "dev-personal-account",
+      "split": "dev",
+      "intent": "explain_access",
+      "description": "Причина оформления на личную учётную запись."
+    },
+    {
+      "family_id": "dev-restart-cancelled",
+      "split": "dev",
+      "intent": "request_access",
+      "description": "Явная подготовка нового процесса после отмены старого."
+    },
+    {
+      "family_id": "dev-transmission-status",
+      "split": "dev",
+      "intent": "request_status",
+      "description": "Запрос факта завершения отправки, а не дальнейшего действия."
+    },
+    {
+      "family_id": "dev-while-sending",
+      "split": "dev",
+      "intent": "next_step",
+      "description": "Действия пользователя во время отправки."
+    },
+    {
+      "family_id": "dev-contradictory-choice",
+      "split": "dev",
+      "intent": "clarify",
+      "description": "Одновременные взаимоисключающие требования."
+    },
+    {
+      "family_id": "dev-hardware",
+      "split": "dev",
+      "intent": "out_of_scope",
+      "description": "Ремонт и выдача оборудования вне сценария."
+    },
+    {
+      "family_id": "test-approval-vs-grant",
+      "split": "test",
+      "intent": "explain_access",
+      "description": "Объяснение различия согласования и фактической выдачи доступа."
+    },
+    {
+      "family_id": "test-preview-without-submit",
+      "split": "test",
+      "intent": "request_access",
+      "description": "Явная подготовка с запретом отправки и требованием предварительного просмотра."
+    },
+    {
+      "family_id": "test-cancellation-outcome",
+      "split": "test",
+      "intent": "request_status",
+      "description": "Проверка факта отмены собственной заявки."
+    },
+    {
+      "family_id": "test-unknown-next-action",
+      "split": "test",
+      "intent": "next_step",
+      "description": "Следующее безопасное действие при неизвестном исходе отправки."
+    },
+    {
+      "family_id": "test-background-without-ask",
+      "split": "test",
+      "intent": "clarify",
+      "description": "Сообщение о ситуации без достаточного запроса или выбранного действия."
+    },
+    {
+      "family_id": "test-other-resource",
+      "split": "test",
+      "intent": "out_of_scope",
+      "description": "Запрос доступа к другому ресурсу, не к командному пространству."
+    }
+  ],
+  "records": [
+    {
+      "id": "train-prerequisites-01",
+      "split": "train",
+      "family_id": "train-prerequisites",
+      "message": "Какие сведения нужны перед оформлением доступа в наше пространство?",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-prerequisites-02",
+      "split": "train",
+      "family_id": "train-prerequisites",
+      "message": "Что мне заранее подготовить для заявки в пространство команды?",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-prerequisites-03",
+      "split": "train",
+      "family_id": "train-prerequisites",
+      "message": "Какие данные потребуются для получения доступа к командному пространству?",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-prerequisites-04",
+      "split": "train",
+      "family_id": "train-prerequisites",
+      "message": "Расскажи об условиях, которые нужно выполнить до оформления доступа.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-prerequisites-05",
+      "split": "train",
+      "family_id": "train-prerequisites",
+      "message": "Перед заявкой на пространство хочу узнать, что от меня потребуется.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-prerequisites-06",
+      "split": "train",
+      "family_id": "train-prerequisites",
+      "message": "Что проверить у себя до начала оформления доступа в пространство?",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-approver-role-01",
+      "split": "train",
+      "family_id": "train-approver-role",
+      "message": "Кто согласует доступ в пространство моей команды?",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-approver-role-02",
+      "split": "train",
+      "family_id": "train-approver-role",
+      "message": "Какой участник рассматривает заявку на наше пространство?",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-approver-role-03",
+      "split": "train",
+      "family_id": "train-approver-role",
+      "message": "Объясни, кто отвечает за согласование доступа к пространству.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-approver-role-04",
+      "split": "train",
+      "family_id": "train-approver-role",
+      "message": "У кого по учебной процедуре спрашивают разрешение на вход в пространство?",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-approver-role-05",
+      "split": "train",
+      "family_id": "train-approver-role",
+      "message": "Кому по правилам команды поступает запрос на доступ?",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-approver-role-06",
+      "split": "train",
+      "family_id": "train-approver-role",
+      "message": "Чья роль в процедуре — согласовать доступ к пространству?",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-confirmation-rule-01",
+      "split": "train",
+      "family_id": "train-confirmation-rule",
+      "message": "Для чего нужна кнопка подтверждения черновика?",
+      "workflow_state": "awaiting_confirmation",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-confirmation-rule-02",
+      "split": "train",
+      "family_id": "train-confirmation-rule",
+      "message": "Почему недостаточно написать согласие в чате перед отправкой заявки?",
+      "workflow_state": "awaiting_confirmation",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-confirmation-rule-03",
+      "split": "train",
+      "family_id": "train-confirmation-rule",
+      "message": "Объясни правило подтверждения версии черновика доступа.",
+      "workflow_state": "awaiting_confirmation",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-confirmation-rule-04",
+      "split": "train",
+      "family_id": "train-confirmation-rule",
+      "message": "Что означает подтверждение именно показанной версии заявки?",
+      "workflow_state": "awaiting_confirmation",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-confirmation-rule-05",
+      "split": "train",
+      "family_id": "train-confirmation-rule",
+      "message": "Как устроено подтверждение черновика перед его отправкой?",
+      "workflow_state": "awaiting_confirmation",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-confirmation-rule-06",
+      "split": "train",
+      "family_id": "train-confirmation-rule",
+      "message": "Зачем ещё раз подтверждать заявку, если черновик изменился?",
+      "workflow_state": "awaiting_confirmation",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "train-self-initiation-01",
+      "split": "train",
+      "family_id": "train-self-initiation",
+      "message": "Подготовь для меня первую заявку в командное пространство.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-self-initiation-02",
+      "split": "train",
+      "family_id": "train-self-initiation",
+      "message": "Начни оформление моего доступа: нужен черновик заявки.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-self-initiation-03",
+      "split": "train",
+      "family_id": "train-self-initiation",
+      "message": "Создай черновик запроса на мой доступ к пространству команды.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-self-initiation-04",
+      "split": "train",
+      "family_id": "train-self-initiation",
+      "message": "Оформи предварительную заявку на вход в наше пространство.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-self-initiation-05",
+      "split": "train",
+      "family_id": "train-self-initiation",
+      "message": "Прошу подготовить мою заявку на командное пространство.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-self-initiation-06",
+      "split": "train",
+      "family_id": "train-self-initiation",
+      "message": "Составь мне черновую заявку для доступа к нашему пространству.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-first-task-01",
+      "split": "train",
+      "family_id": "train-first-task",
+      "message": "Для первого задания нужно наше пространство, подготовь черновик доступа.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-first-task-02",
+      "split": "train",
+      "family_id": "train-first-task",
+      "message": "Начинаю стажёрскую задачу; составь заявку на доступ в пространство.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-first-task-03",
+      "split": "train",
+      "family_id": "train-first-task",
+      "message": "Мне поручили первую задачу в пространстве команды, создай черновик заявки.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-first-task-04",
+      "split": "train",
+      "family_id": "train-first-task",
+      "message": "Чтобы приступить к первому заданию, подготовь мой запрос на доступ.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-first-task-05",
+      "split": "train",
+      "family_id": "train-first-task",
+      "message": "Нужен черновик доступа в пространство для стартовой задачи стажировки.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-first-task-06",
+      "split": "train",
+      "family_id": "train-first-task",
+      "message": "Готовлюсь к первой задаче: оформи предварительный запрос на пространство.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-corrected-failure-01",
+      "split": "train",
+      "family_id": "train-corrected-failure",
+      "message": "Исправил неверные данные после ошибки, подготовь новый черновик доступа.",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-corrected-failure-02",
+      "split": "train",
+      "family_id": "train-corrected-failure",
+      "message": "Ошибка в сведениях исправлена; хочу заново подготовить черновик заявки.",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-corrected-failure-03",
+      "split": "train",
+      "family_id": "train-corrected-failure",
+      "message": "После неудачи уточнил данные, составь черновую заявку на пространство.",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-corrected-failure-04",
+      "split": "train",
+      "family_id": "train-corrected-failure",
+      "message": "Теперь данные верные: начни подготовку нового черновика доступа.",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-corrected-failure-05",
+      "split": "train",
+      "family_id": "train-corrected-failure",
+      "message": "Исправления после ошибки готовы, прошу подготовить заявку для просмотра.",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-corrected-failure-06",
+      "split": "train",
+      "family_id": "train-corrected-failure",
+      "message": "Устранил ошибку в своих сведениях, сделай новый черновик на пространство.",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "train-approval-result-01",
+      "split": "train",
+      "family_id": "train-approval-result",
+      "message": "Есть ли уже решение по моему запросу на пространство?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-approval-result-02",
+      "split": "train",
+      "family_id": "train-approval-result",
+      "message": "На какой стадии согласования моя заявка в пространство?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-approval-result-03",
+      "split": "train",
+      "family_id": "train-approval-result",
+      "message": "Узнай результат рассмотрения моего запроса на доступ.",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-approval-result-04",
+      "split": "train",
+      "family_id": "train-approval-result",
+      "message": "Мой доступ ещё согласуют или решение уже поступило?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-approval-result-05",
+      "split": "train",
+      "family_id": "train-approval-result",
+      "message": "Что сейчас с согласованием моей заявки на пространство?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-approval-result-06",
+      "split": "train",
+      "family_id": "train-approval-result",
+      "message": "Проверь, появилось ли решение по моему доступу в пространство.",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-after-refresh-01",
+      "split": "train",
+      "family_id": "train-after-refresh",
+      "message": "Перезагрузил страницу, покажи сохранённый статус моей заявки.",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-after-refresh-02",
+      "split": "train",
+      "family_id": "train-after-refresh",
+      "message": "После обновления чата хочу увидеть состояние моего запроса на пространство.",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-after-refresh-03",
+      "split": "train",
+      "family_id": "train-after-refresh",
+      "message": "Заново открыл приложение, проверь текущий статус моей заявки.",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-after-refresh-04",
+      "split": "train",
+      "family_id": "train-after-refresh",
+      "message": "Сессия закрылась, найди сохранённое состояние моего запроса доступа.",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-after-refresh-05",
+      "split": "train",
+      "family_id": "train-after-refresh",
+      "message": "После перезапуска интерфейса покажи, что с моей заявкой.",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-after-refresh-06",
+      "split": "train",
+      "family_id": "train-after-refresh",
+      "message": "Обновление страницы скрыло карточку; проверь статус моего запроса.",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-timeout-result-01",
+      "split": "train",
+      "family_id": "train-timeout-result",
+      "message": "После таймаута непонятно, принял ли сервис мою заявку. Проверь результат.",
+      "workflow_state": "unknown",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-timeout-result-02",
+      "split": "train",
+      "family_id": "train-timeout-result",
+      "message": "Отправка зависла без ответа, узнай состояние моего запроса доступа.",
+      "workflow_state": "unknown",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-timeout-result-03",
+      "split": "train",
+      "family_id": "train-timeout-result",
+      "message": "Есть ли подтверждённый результат у моей заявки после обрыва связи?",
+      "workflow_state": "unknown",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-timeout-result-04",
+      "split": "train",
+      "family_id": "train-timeout-result",
+      "message": "Проверь, зарегистрировалась ли моя заявка, ответ сервиса потерялся.",
+      "workflow_state": "unknown",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-timeout-result-05",
+      "split": "train",
+      "family_id": "train-timeout-result",
+      "message": "Сервис не ответил вовремя. Найди фактический статус моей операции.",
+      "workflow_state": "unknown",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-timeout-result-06",
+      "split": "train",
+      "family_id": "train-timeout-result",
+      "message": "После потери ответа хочу узнать, что произошло с моим запросом.",
+      "workflow_state": "unknown",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "train-failure-remedy-01",
+      "split": "train",
+      "family_id": "train-failure-remedy",
+      "message": "Появилась ошибка заявки на пространство, подскажи дальнейшее действие.",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-failure-remedy-02",
+      "split": "train",
+      "family_id": "train-failure-remedy",
+      "message": "Что мне предпринять, чтобы разобраться с ошибкой оформления доступа?",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-failure-remedy-03",
+      "split": "train",
+      "family_id": "train-failure-remedy",
+      "message": "Заявка завершилась ошибкой; какой допустимый шаг теперь?",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-failure-remedy-04",
+      "split": "train",
+      "family_id": "train-failure-remedy",
+      "message": "Подскажи порядок действий после неудачной попытки доступа.",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-failure-remedy-05",
+      "split": "train",
+      "family_id": "train-failure-remedy",
+      "message": "Как мне продолжить процесс, если оформление закончилось ошибкой?",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-failure-remedy-06",
+      "split": "train",
+      "family_id": "train-failure-remedy",
+      "message": "Что следует сделать после сбоя моей заявки на пространство?",
+      "workflow_state": "failed",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-after-cancellation-01",
+      "split": "train",
+      "family_id": "train-after-cancellation",
+      "message": "Я отменил заявку на пространство, как теперь продолжить?",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-after-cancellation-02",
+      "split": "train",
+      "family_id": "train-after-cancellation",
+      "message": "После отмены запроса какой шаг мне доступен?",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-after-cancellation-03",
+      "split": "train",
+      "family_id": "train-after-cancellation",
+      "message": "Что можно сделать дальше с доступом после отменённой заявки?",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-after-cancellation-04",
+      "split": "train",
+      "family_id": "train-after-cancellation",
+      "message": "Заявка отменена; подскажи дальнейший порядок действий.",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-after-cancellation-05",
+      "split": "train",
+      "family_id": "train-after-cancellation",
+      "message": "Отменил процесс доступа, каким действием его можно начать заново?",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-after-cancellation-06",
+      "split": "train",
+      "family_id": "train-after-cancellation",
+      "message": "Как действовать после отмены, если пространство всё ещё нужно?",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-during-approval-01",
+      "split": "train",
+      "family_id": "train-during-approval",
+      "message": "Пока доступ согласуют, что требуется от меня?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-during-approval-02",
+      "split": "train",
+      "family_id": "train-during-approval",
+      "message": "Какое действие мне сделать в период ожидания согласования?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-during-approval-03",
+      "split": "train",
+      "family_id": "train-during-approval",
+      "message": "Что мне делать дальше, если запрос ещё на рассмотрении?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-during-approval-04",
+      "split": "train",
+      "family_id": "train-during-approval",
+      "message": "Нужно ли что-то предпринять, пока заявка ожидает решения?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-during-approval-05",
+      "split": "train",
+      "family_id": "train-during-approval",
+      "message": "Подскажи мой следующий шаг при ожидании согласования доступа.",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-during-approval-06",
+      "split": "train",
+      "family_id": "train-during-approval",
+      "message": "Заявка у согласующего; как мне действовать дальше?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "train-chat-consent-01",
+      "split": "train",
+      "family_id": "train-chat-consent",
+      "message": "да",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-chat-consent-02",
+      "split": "train",
+      "family_id": "train-chat-consent",
+      "message": "Да",
+      "workflow_state": "awaiting_confirmation",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-chat-consent-03",
+      "split": "train",
+      "family_id": "train-chat-consent",
+      "message": "да.",
+      "workflow_state": "awaiting_confirmation",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-chat-consent-04",
+      "split": "train",
+      "family_id": "train-chat-consent",
+      "message": "Подтверждаю",
+      "workflow_state": "awaiting_confirmation",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-chat-consent-05",
+      "split": "train",
+      "family_id": "train-chat-consent",
+      "message": "ага",
+      "workflow_state": "submitting",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-chat-consent-06",
+      "split": "train",
+      "family_id": "train-chat-consent",
+      "message": "ок",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-missing-reference-01",
+      "split": "train",
+      "family_id": "train-missing-reference",
+      "message": "Помоги мне с этим, пожалуйста.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-missing-reference-02",
+      "split": "train",
+      "family_id": "train-missing-reference",
+      "message": "Мне надо туда, разберись.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-missing-reference-03",
+      "split": "train",
+      "family_id": "train-missing-reference",
+      "message": "Сделай то, о чём я думаю.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-missing-reference-04",
+      "split": "train",
+      "family_id": "train-missing-reference",
+      "message": "Хочу эту возможность, ну ты понял.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-missing-reference-05",
+      "split": "train",
+      "family_id": "train-missing-reference",
+      "message": "Давай как-нибудь решим это.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-missing-reference-06",
+      "split": "train",
+      "family_id": "train-missing-reference",
+      "message": "Нужно оформить что-то для меня.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-exclusive-alternatives-01",
+      "split": "train",
+      "family_id": "train-exclusive-alternatives",
+      "message": "То ли объясни доступ, то ли подготовь заявку, я пока не решил.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-exclusive-alternatives-02",
+      "split": "train",
+      "family_id": "train-exclusive-alternatives",
+      "message": "Не знаю, нужна инструкция или черновик заявки в пространство.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-exclusive-alternatives-03",
+      "split": "train",
+      "family_id": "train-exclusive-alternatives",
+      "message": "Может, расскажи правила, а может, оформи доступ; ещё выбираю.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-exclusive-alternatives-04",
+      "split": "train",
+      "family_id": "train-exclusive-alternatives",
+      "message": "Хочу либо инструкцию по пространству, либо заявку, но не определился.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-exclusive-alternatives-05",
+      "split": "train",
+      "family_id": "train-exclusive-alternatives",
+      "message": "Не решил, просить объяснение процедуры или подготовку черновика.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-exclusive-alternatives-06",
+      "split": "train",
+      "family_id": "train-exclusive-alternatives",
+      "message": "Пока выбираю между чтением правил доступа и оформлением заявки.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "train-expense-01",
+      "split": "train",
+      "family_id": "train-expense",
+      "message": "Подай заявку на возмещение стоимости такси.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-expense-02",
+      "split": "train",
+      "family_id": "train-expense",
+      "message": "Оформи компенсацию расходов на поездку.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-expense-03",
+      "split": "train",
+      "family_id": "train-expense",
+      "message": "Мне нужно вернуть деньги за рабочий проезд.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-expense-04",
+      "split": "train",
+      "family_id": "train-expense",
+      "message": "Создай запрос на оплату моего чека из кафе.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-expense-05",
+      "split": "train",
+      "family_id": "train-expense",
+      "message": "Хочу получить возмещение расходов на питание.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-expense-06",
+      "split": "train",
+      "family_id": "train-expense",
+      "message": "Помоги оформить возврат денег за билеты.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-software-01",
+      "split": "train",
+      "family_id": "train-software",
+      "message": "Установи редактор кода на мой ноутбук.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-software-02",
+      "split": "train",
+      "family_id": "train-software",
+      "message": "Скачай приложение для обработки фотографий.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-software-03",
+      "split": "train",
+      "family_id": "train-software",
+      "message": "Обнови браузер на рабочем компьютере.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-software-04",
+      "split": "train",
+      "family_id": "train-software",
+      "message": "Настрой мне локальную среду разработки.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-software-05",
+      "split": "train",
+      "family_id": "train-software",
+      "message": "Поставь программу для монтажа видео.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-software-06",
+      "split": "train",
+      "family_id": "train-software",
+      "message": "Удали старый антивирус с ноутбука.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-calendar-01",
+      "split": "train",
+      "family_id": "train-calendar",
+      "message": "Создай встречу с наставником на завтра.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-calendar-02",
+      "split": "train",
+      "family_id": "train-calendar",
+      "message": "Отправь коллеге письмо о нашем созвоне.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-calendar-03",
+      "split": "train",
+      "family_id": "train-calendar",
+      "message": "Перенеси совещание в календаре на вечер.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-calendar-04",
+      "split": "train",
+      "family_id": "train-calendar",
+      "message": "Пригласи команду на общую встречу.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-calendar-05",
+      "split": "train",
+      "family_id": "train-calendar",
+      "message": "Поставь напоминание о пятничном созвоне.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "train-calendar-06",
+      "split": "train",
+      "family_id": "train-calendar",
+      "message": "Напиши руководителю, что я задержусь.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "dev-personal-account-01",
+      "split": "dev",
+      "family_id": "dev-personal-account",
+      "message": "Почему доступ к пространству оформляется на мою учётную запись?",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "dev-personal-account-02",
+      "split": "dev",
+      "family_id": "dev-personal-account",
+      "message": "Объясни, зачем для пространства нужна именно личная рабочая учётка.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "dev-personal-account-03",
+      "split": "dev",
+      "family_id": "dev-personal-account",
+      "message": "Для чего в процедуре доступа используется мой собственный аккаунт?",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "dev-personal-account-04",
+      "split": "dev",
+      "family_id": "dev-personal-account",
+      "message": "Хочу понять правило личной учётной записи при доступе в пространство.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "dev-restart-cancelled-01",
+      "split": "dev",
+      "family_id": "dev-restart-cancelled",
+      "message": "Старую заявку отменил, подготовь новую на доступ в пространство.",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "dev-restart-cancelled-02",
+      "split": "dev",
+      "family_id": "dev-restart-cancelled",
+      "message": "После отмены хочу новый черновик для пространства команды.",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "dev-restart-cancelled-03",
+      "split": "dev",
+      "family_id": "dev-restart-cancelled",
+      "message": "Начни новый запрос на пространство взамен отменённого, пока только черновик.",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "dev-restart-cancelled-04",
+      "split": "dev",
+      "family_id": "dev-restart-cancelled",
+      "message": "Отменённый процесс больше не нужен; составь новую заявку на доступ.",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "dev-transmission-status-01",
+      "split": "dev",
+      "family_id": "dev-transmission-status",
+      "message": "Передача моей заявки в сервис уже завершилась?",
+      "workflow_state": "submitting",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "dev-transmission-status-02",
+      "split": "dev",
+      "family_id": "dev-transmission-status",
+      "message": "Проверь, ещё идёт отправка запроса или он уже принят.",
+      "workflow_state": "submitting",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "dev-transmission-status-03",
+      "split": "dev",
+      "family_id": "dev-transmission-status",
+      "message": "Как сейчас обстоит дело с передачей моей заявки на доступ?",
+      "workflow_state": "submitting",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "dev-transmission-status-04",
+      "split": "dev",
+      "family_id": "dev-transmission-status",
+      "message": "Хочу узнать текущее состояние отправки в сервис.",
+      "workflow_state": "submitting",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "dev-while-sending-01",
+      "split": "dev",
+      "family_id": "dev-while-sending",
+      "message": "Пока отправляется заявка, мне нужно что-нибудь нажимать?",
+      "workflow_state": "submitting",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "dev-while-sending-02",
+      "split": "dev",
+      "family_id": "dev-while-sending",
+      "message": "Как действовать, если интерфейс всё ещё показывает отправку?",
+      "workflow_state": "submitting",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "dev-while-sending-03",
+      "split": "dev",
+      "family_id": "dev-while-sending",
+      "message": "Что мне делать в ожидании завершения передачи запроса?",
+      "workflow_state": "submitting",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "dev-while-sending-04",
+      "split": "dev",
+      "family_id": "dev-while-sending",
+      "message": "Отправка ещё идёт; подскажи, какое действие сейчас допустимо.",
+      "workflow_state": "submitting",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "dev-contradictory-choice-01",
+      "split": "dev",
+      "family_id": "dev-contradictory-choice",
+      "message": "Создай заявку на пространство, но не создавай никакую заявку.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "dev-contradictory-choice-02",
+      "split": "dev",
+      "family_id": "dev-contradictory-choice",
+      "message": "Начни оформление доступа и одновременно не начинай его.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "dev-contradictory-choice-03",
+      "split": "dev",
+      "family_id": "dev-contradictory-choice",
+      "message": "Подготовь черновик, хотя я запрещаю готовить черновик.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "dev-contradictory-choice-04",
+      "split": "dev",
+      "family_id": "dev-contradictory-choice",
+      "message": "Хочу новую заявку в пространство, и новую заявку я не хочу.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "dev-hardware-01",
+      "split": "dev",
+      "family_id": "dev-hardware",
+      "message": "Замените мне сломанный монитор.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "dev-hardware-02",
+      "split": "dev",
+      "family_id": "dev-hardware",
+      "message": "Нужна новая мышка вместо неисправной.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "dev-hardware-03",
+      "split": "dev",
+      "family_id": "dev-hardware",
+      "message": "Оформи ремонт клавиатуры ноутбука.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "dev-hardware-04",
+      "split": "dev",
+      "family_id": "dev-hardware",
+      "message": "Выдай запасную зарядку для рабочего компьютера.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "test-approval-vs-grant-01",
+      "split": "test",
+      "family_id": "test-approval-vs-grant",
+      "message": "Ожидание согласования означает, что пространство уже должно открываться?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "test-approval-vs-grant-02",
+      "split": "test",
+      "family_id": "test-approval-vs-grant",
+      "message": "Объясни разницу между заявкой на рассмотрении и выданным доступом.",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "test-approval-vs-grant-03",
+      "split": "test",
+      "family_id": "test-approval-vs-grant",
+      "message": "Почему надпись об ожидании согласования ещё не означает доступ в пространство?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "test-approval-vs-grant-04",
+      "split": "test",
+      "family_id": "test-approval-vs-grant",
+      "message": "Считается ли доступ выданным, если заявка только ожидает решения?",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "test-approval-vs-grant-05",
+      "split": "test",
+      "family_id": "test-approval-vs-grant",
+      "message": "Хочу понять, чем согласование заявки отличается от получения доступа.",
+      "workflow_state": "pending_approval",
+      "target": {
+        "intent": "explain_access"
+      }
+    },
+    {
+      "id": "test-preview-without-submit-01",
+      "split": "test",
+      "family_id": "test-preview-without-submit",
+      "message": "Составь заявку на пространство только для просмотра, ничего не отправляй.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "test-preview-without-submit-02",
+      "split": "test",
+      "family_id": "test-preview-without-submit",
+      "message": "Хочу предварительно посмотреть подготовленный запрос на доступ без отправки.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "test-preview-without-submit-03",
+      "split": "test",
+      "family_id": "test-preview-without-submit",
+      "message": "Подготовь черновик доступа, я сначала изучу его перед любым подтверждением.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "test-preview-without-submit-04",
+      "split": "test",
+      "family_id": "test-preview-without-submit",
+      "message": "Собери заявку в пространство, но оставь её неотправленной для моей проверки.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "test-preview-without-submit-05",
+      "split": "test",
+      "family_id": "test-preview-without-submit",
+      "message": "Сделай предварительный вариант запроса на пространство; отправлять пока запрещаю.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "request_access"
+      }
+    },
+    {
+      "id": "test-cancellation-outcome-01",
+      "split": "test",
+      "family_id": "test-cancellation-outcome",
+      "message": "Проверь, зафиксировалась ли отмена моего запроса на пространство.",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "test-cancellation-outcome-02",
+      "split": "test",
+      "family_id": "test-cancellation-outcome",
+      "message": "Моя отменённая заявка действительно помечена как отменённая?",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "test-cancellation-outcome-03",
+      "split": "test",
+      "family_id": "test-cancellation-outcome",
+      "message": "Хочу убедиться, что сервис сохранил отмену моей заявки.",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "test-cancellation-outcome-04",
+      "split": "test",
+      "family_id": "test-cancellation-outcome",
+      "message": "Какое состояние сейчас у запроса, отмену которого я сделал?",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "test-cancellation-outcome-05",
+      "split": "test",
+      "family_id": "test-cancellation-outcome",
+      "message": "Отмена моей заявки уже отражена в её сохранённом статусе?",
+      "workflow_state": "cancelled",
+      "target": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "test-unknown-next-action-01",
+      "split": "test",
+      "family_id": "test-unknown-next-action",
+      "message": "Результат отправки неизвестен; как мне безопасно продолжить?",
+      "workflow_state": "unknown",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "test-unknown-next-action-02",
+      "split": "test",
+      "family_id": "test-unknown-next-action",
+      "message": "Что следует делать, пока непонятно, принял ли сервис запрос?",
+      "workflow_state": "unknown",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "test-unknown-next-action-03",
+      "split": "test",
+      "family_id": "test-unknown-next-action",
+      "message": "После потери ответа сервиса какое моё действие будет правильным?",
+      "workflow_state": "unknown",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "test-unknown-next-action-04",
+      "split": "test",
+      "family_id": "test-unknown-next-action",
+      "message": "Система не знает исход заявки. Подскажи дальнейший порядок действий.",
+      "workflow_state": "unknown",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "test-unknown-next-action-05",
+      "split": "test",
+      "family_id": "test-unknown-next-action",
+      "message": "Нет подтверждённого результата отправки — что мне сейчас предпринять?",
+      "workflow_state": "unknown",
+      "target": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "test-background-without-ask-01",
+      "split": "test",
+      "family_id": "test-background-without-ask",
+      "message": "Я сегодня впервые вышел на стажировку.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "test-background-without-ask-02",
+      "split": "test",
+      "family_id": "test-background-without-ask",
+      "message": "У меня завтра начинается первая рабочая неделя.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "test-background-without-ask-03",
+      "split": "test",
+      "family_id": "test-background-without-ask",
+      "message": "Коллеги рассказали, что у команды есть рабочее пространство.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "test-background-without-ask-04",
+      "split": "test",
+      "family_id": "test-background-without-ask",
+      "message": "Я пока просто осматриваюсь в новой команде.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "test-background-without-ask-05",
+      "split": "test",
+      "family_id": "test-background-without-ask",
+      "message": "Наставник упоминал командное пространство на знакомстве.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "test-other-resource-01",
+      "split": "test",
+      "family_id": "test-other-resource",
+      "message": "Оформи доступ к VPN на моём ноутбуке.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "test-other-resource-02",
+      "split": "test",
+      "family_id": "test-other-resource",
+      "message": "Подготовь заявку на доступ к производственной базе данных.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "test-other-resource-03",
+      "split": "test",
+      "family_id": "test-other-resource",
+      "message": "Выдай мне права на почтовый ящик отдела.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "test-other-resource-04",
+      "split": "test",
+      "family_id": "test-other-resource",
+      "message": "Нужен доступ к финансовой системе, создай запрос.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    },
+    {
+      "id": "test-other-resource-05",
+      "split": "test",
+      "family_id": "test-other-resource",
+      "message": "Подключи мой аккаунт к облачной консоли администрирования.",
+      "workflow_state": "not_started",
+      "target": {
+        "intent": "out_of_scope"
+      }
+    }
+  ]
+}

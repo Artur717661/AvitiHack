@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-buddy:ml-route:request:v1",
+  "title": "Trusted backend request to the internal ML router",
+  "description": "Proposed POST /internal/v1/ml/route contract. actor_context is created by the authenticated backend and must never be accepted as a public browser request body. Only message and workflow_state are projected into model input; actor_context is not passed to the model.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["message", "workflow_state", "actor_context"],
+  "properties": {
+    "message": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "workflow_state": {
+      "type": "string",
+      "enum": ["not_started", "awaiting_confirmation", "submitting", "pending_approval", "unknown", "failed", "cancelled"]
+    },
+    "actor_context": {
+      "type": "object",
+      "description": "Trusted backend authentication context; schema validation alone does not establish authenticity or authorization.",
+      "additionalProperties": false,
+      "required": ["user_id", "team_id", "role"],
+      "properties": {
+        "user_id": {"type": "string", "minLength": 1, "maxLength": 100},
+        "team_id": {"type": "string", "enum": ["alpha", "beta"]},
+        "role": {"type": "string", "enum": ["intern"]}
+      }
+    }
+  }
+}

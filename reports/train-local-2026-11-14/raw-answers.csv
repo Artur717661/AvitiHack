@@ -1,0 +1,73 @@
+﻿evaluation,case_id,message,workflow_state,expected_intent,raw_response,intent_match,valid_json_contract
+baseline_dev,dev-personal-account-01,Почему доступ к пространству оформляется на мою учётную запись?,not_started,explain_access,"{""intent"": ""explain_access""}",True,True
+baseline_dev,dev-personal-account-02,"Объясни, зачем для пространства нужна именно личная рабочая учётка.",not_started,explain_access,"{""intent"": ""explain_access""}",True,True
+baseline_dev,dev-personal-account-03,Для чего в процедуре доступа используется мой собственный аккаунт?,not_started,explain_access,"{""intent"": ""explain_access""}",True,True
+baseline_dev,dev-personal-account-04,Хочу понять правило личной учётной записи при доступе в пространство.,not_started,explain_access,"{""intent"": ""explain_access""}",True,True
+baseline_dev,dev-restart-cancelled-01,"Старую заявку отменил, подготовь новую на доступ в пространство.",cancelled,request_access,"{""intent"": ""request_access""}",True,True
+baseline_dev,dev-restart-cancelled-02,После отмены хочу новый черновик для пространства команды.,cancelled,request_access,"{""intent"": ""request_access""}",True,True
+baseline_dev,dev-restart-cancelled-03,"Начни новый запрос на пространство взамен отменённого, пока только черновик.",cancelled,request_access,"{""intent"": ""request_access""}",True,True
+baseline_dev,dev-restart-cancelled-04,Отменённый процесс больше не нужен; составь новую заявку на доступ.,cancelled,request_access,"{""intent"": ""request_access""}",True,True
+baseline_dev,dev-transmission-status-01,Передача моей заявки в сервис уже завершилась?,submitting,request_status,"{""intent"": ""request_status""}",True,True
+baseline_dev,dev-transmission-status-02,"Проверь, ещё идёт отправка запроса или он уже принят.",submitting,request_status,"{""intent"": ""request_status""}",True,True
+baseline_dev,dev-transmission-status-03,Как сейчас обстоит дело с передачей моей заявки на доступ?,submitting,request_status,"{""intent"": ""request_status""}",True,True
+baseline_dev,dev-transmission-status-04,Хочу узнать текущее состояние отправки в сервис.,submitting,request_status,"{""intent"": ""request_status""}",True,True
+baseline_dev,dev-while-sending-01,"Пока отправляется заявка, мне нужно что-нибудь нажимать?",submitting,next_step,"{""intent"": ""clarify""}",False,True
+baseline_dev,dev-while-sending-02,"Как действовать, если интерфейс всё ещё показывает отправку?",submitting,next_step,"{""intent"": ""clarify""}",False,True
+baseline_dev,dev-while-sending-03,Что мне делать в ожидании завершения передачи запроса?,submitting,next_step,"{""intent"": ""clarify""}",False,True
+baseline_dev,dev-while-sending-04,"Отправка ещё идёт; подскажи, какое действие сейчас допустимо.",submitting,next_step,"{""intent"": ""clarify""}",False,True
+baseline_dev,dev-contradictory-choice-01,"Создай заявку на пространство, но не создавай никакую заявку.",not_started,clarify,"{""intent"": ""clarify""}",True,True
+baseline_dev,dev-contradictory-choice-02,Начни оформление доступа и одновременно не начинай его.,not_started,clarify,"{""intent"": ""clarify""}",True,True
+baseline_dev,dev-contradictory-choice-03,"Подготовь черновик, хотя я запрещаю готовить черновик.",not_started,clarify,"{""intent"": ""request_access"", ""workflow_state"": ""not_started""}",False,False
+baseline_dev,dev-contradictory-choice-04,"Хочу новую заявку в пространство, и новую заявку я не хочу.",not_started,clarify,"{""intent"": ""clarify""}",True,True
+baseline_dev,dev-hardware-01,Замените мне сломанный монитор.,not_started,out_of_scope,"{""intent"": ""clarify""}",False,True
+baseline_dev,dev-hardware-02,Нужна новая мышка вместо неисправной.,not_started,out_of_scope,"{""intent"": ""clarify""}",False,True
+baseline_dev,dev-hardware-03,Оформи ремонт клавиатуры ноутбука.,not_started,out_of_scope,"{""intent"": ""clarify""}",False,True
+baseline_dev,dev-hardware-04,Выдай запасную зарядку для рабочего компьютера.,not_started,out_of_scope,"{""intent"": ""request_access"", ""workflow_state"": ""not_started""}",False,False
+adapter_dev,dev-personal-account-01,Почему доступ к пространству оформляется на мою учётную запись?,not_started,explain_access,"{""intent"":""request_status""}",False,True
+adapter_dev,dev-personal-account-02,"Объясни, зачем для пространства нужна именно личная рабочая учётка.",not_started,explain_access,"{""intent"":""explain_access""}",True,True
+adapter_dev,dev-personal-account-03,Для чего в процедуре доступа используется мой собственный аккаунт?,not_started,explain_access,"{""intent"":""explain_access""}",True,True
+adapter_dev,dev-personal-account-04,Хочу понять правило личной учётной записи при доступе в пространство.,not_started,explain_access,"{""intent"":""explain_access""}",True,True
+adapter_dev,dev-restart-cancelled-01,"Старую заявку отменил, подготовь новую на доступ в пространство.",cancelled,request_access,"{""intent"":""request_access""}",True,True
+adapter_dev,dev-restart-cancelled-02,После отмены хочу новый черновик для пространства команды.,cancelled,request_access,"{""intent"":""request_access""}",True,True
+adapter_dev,dev-restart-cancelled-03,"Начни новый запрос на пространство взамен отменённого, пока только черновик.",cancelled,request_access,"{""intent"":""request_access""}",True,True
+adapter_dev,dev-restart-cancelled-04,Отменённый процесс больше не нужен; составь новую заявку на доступ.,cancelled,request_access,"{""intent"":""request_access""}",True,True
+adapter_dev,dev-transmission-status-01,Передача моей заявки в сервис уже завершилась?,submitting,request_status,"{""intent"":""request_status""}",True,True
+adapter_dev,dev-transmission-status-02,"Проверь, ещё идёт отправка запроса или он уже принят.",submitting,request_status,"{""intent"":""request_status""}",True,True
+adapter_dev,dev-transmission-status-03,Как сейчас обстоит дело с передачей моей заявки на доступ?,submitting,request_status,"{""intent"":""request_status""}",True,True
+adapter_dev,dev-transmission-status-04,Хочу узнать текущее состояние отправки в сервис.,submitting,request_status,"{""intent"":""request_status""}",True,True
+adapter_dev,dev-while-sending-01,"Пока отправляется заявка, мне нужно что-нибудь нажимать?",submitting,next_step,"{""intent"":""next_step""}",True,True
+adapter_dev,dev-while-sending-02,"Как действовать, если интерфейс всё ещё показывает отправку?",submitting,next_step,"{""intent"":""next_step""}",True,True
+adapter_dev,dev-while-sending-03,Что мне делать в ожидании завершения передачи запроса?,submitting,next_step,"{""intent"":""next_step""}",True,True
+adapter_dev,dev-while-sending-04,"Отправка ещё идёт; подскажи, какое действие сейчас допустимо.",submitting,next_step,"{""intent"":""next_step""}",True,True
+adapter_dev,dev-contradictory-choice-01,"Создай заявку на пространство, но не создавай никакую заявку.",not_started,clarify,"{""intent"":""clarify""}",True,True
+adapter_dev,dev-contradictory-choice-02,Начни оформление доступа и одновременно не начинай его.,not_started,clarify,"{""intent"":""clarify""}",True,True
+adapter_dev,dev-contradictory-choice-03,"Подготовь черновик, хотя я запрещаю готовить черновик.",not_started,clarify,"{""intent"":""request_access""}",False,True
+adapter_dev,dev-contradictory-choice-04,"Хочу новую заявку в пространство, и новую заявку я не хочу.",not_started,clarify,"{""intent"":""clarify""}",True,True
+adapter_dev,dev-hardware-01,Замените мне сломанный монитор.,not_started,out_of_scope,"{""intent"":""out_of_scope""}",True,True
+adapter_dev,dev-hardware-02,Нужна новая мышка вместо неисправной.,not_started,out_of_scope,"{""intent"":""out_of_scope""}",True,True
+adapter_dev,dev-hardware-03,Оформи ремонт клавиатуры ноутбука.,not_started,out_of_scope,"{""intent"":""out_of_scope""}",True,True
+adapter_dev,dev-hardware-04,Выдай запасную зарядку для рабочего компьютера.,not_started,out_of_scope,"{""intent"":""out_of_scope""}",True,True
+adapter_probe,status-exact-01,какой статус?,pending_approval,request_status,"{""intent"":""request_status""}",True,True
+adapter_probe,status-exact-02,какой статус?,unknown,request_status,"{""intent"":""request_status""}",True,True
+adapter_probe,status-exact-03,какой статус?,submitting,request_status,"{""intent"":""request_status""}",True,True
+adapter_probe,status-exact-04,какой статус?,failed,request_status,"{""intent"":""request_status""}",True,True
+adapter_probe,status-new-01,Есть уже какая-нибудь моя заявка на доступ? Хочу узнать её состояние.,not_started,request_status,"{""intent"":""request_status""}",True,True
+adapter_probe,status-new-02,Черновик ждёт подтверждения; в каком состоянии сейчас моя заявка?,awaiting_confirmation,request_status,"{""intent"":""request_status""}",True,True
+adapter_probe,status-new-03,В карточке отменённой заявки какое состояние сохранено сейчас?,cancelled,request_status,"{""intent"":""request_status""}",True,True
+adapter_probe,status-new-04,Хочу увидеть текущее положение моего запроса в процессе согласования.,pending_approval,request_status,"{""intent"":""request_status""}",True,True
+adapter_probe,status-new-05,"Нужен установленный сервисом исход отправки, а не предположение: что с моей заявкой?",unknown,request_status,"{""intent"":""request_status""}",True,True
+adapter_probe,status-new-06,Сведения о передаче моей заявки обновились? Покажи текущее состояние.,submitting,request_status,"{""intent"":""request_status""}",True,True
+adapter_probe,next-exact-01,что мне делать дальше?,pending_approval,next_step,"{""intent"":""next_step""}",True,True
+adapter_probe,next-exact-02,что мне делать дальше?,unknown,next_step,"{""intent"":""next_step""}",True,True
+adapter_probe,next-exact-03,что мне делать дальше?,submitting,next_step,"{""intent"":""next_step""}",True,True
+adapter_probe,next-exact-04,что мне делать дальше?,failed,next_step,"{""intent"":""next_step""}",True,True
+adapter_probe,next-new-01,Процесс доступа ещё не начинался. Какое первое действие нужно сделать мне?,not_started,next_step,"{""intent"":""next_step""}",True,True
+adapter_probe,next-new-02,Карточка черновика передо мной. Какое действие теперь требуется от меня?,awaiting_confirmation,next_step,"{""intent"":""next_step""}",True,True
+adapter_probe,next-new-03,После отмены какой допустимый шаг поможет продолжить процесс доступа?,cancelled,next_step,"{""intent"":""next_step""}",True,True
+adapter_probe,next-new-04,Моя заявка находится у согласующего. Чем мне заняться дальше в этом процессе?,pending_approval,next_step,"{""intent"":""next_step""}",True,True
+adapter_probe,next-new-05,"Исход отправки не установлен. Как действовать, чтобы не создать дубликат?",unknown,next_step,"{""intent"":""next_step""}",True,True
+adapter_probe,next-new-06,В карточке ошибка оформления. Подскажи безопасное следующее действие для меня.,failed,next_step,"{""intent"":""next_step""}",True,True
+adapter_probe,clarify-new-01,"Покажи статус моей заявки и объясни, что мне делать после него.",pending_approval,clarify,"{""intent"":""request_status""}",False,True
+adapter_probe,clarify-new-02,"Проверь, что с заявкой, а ещё подскажи мой следующий шаг.",unknown,clarify,"{""intent"":""next_step""}",False,True
+adapter_probe,clarify-new-03,"Результат или дальнейшие действия? Я пока не выбрал, что хочу узнать.",awaiting_confirmation,clarify,"{""intent"":""clarify""}",True,True
+adapter_probe,clarify-new-04,"Я про эту историю с доступом, ну ты понял.",not_started,clarify,"{""intent"":""clarify""}",True,True

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-buddy:ml-route:response:v1",
+  "title": "ML intent routing response",
+  "description": "An intent recommendation only. Backend independently applies authorization and workflow state. No confidence, tool identifiers, permissions, resource IDs or submission commands are model output.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["intent"],
+  "properties": {
+    "intent": {
+      "type": "string",
+      "enum": ["explain_access", "request_access", "request_status", "next_step", "clarify", "out_of_scope"]
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "mode": "trained_adapter_contract_integration_check",
+  "cases": [
+    {
+      "id": "explain_alpha",
+      "request": {
+        "message": "Как получить доступ?",
+        "workflow_state": "not_started",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "explain_access"
+      },
+      "actual_response": {
+        "intent": "explain_access"
+      },
+      "match": true,
+      "elapsed_seconds": 1.2339907999999014
+    },
+    {
+      "id": "prepare_request",
+      "request": {
+        "message": "Подготовь заявку на доступ",
+        "workflow_state": "not_started",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_access"
+      },
+      "actual_response": {
+        "intent": "request_access"
+      },
+      "match": true,
+      "elapsed_seconds": 0.3515773999999965
+    },
+    {
+      "id": "status_pending",
+      "request": {
+        "message": "Какой статус моей заявки?",
+        "workflow_state": "pending_approval",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      },
+      "actual_response": {
+        "intent": "request_status"
+      },
+      "match": true,
+      "elapsed_seconds": 0.3489385000000311
+    },
+    {
+      "id": "next_step_failed",
+      "request": {
+        "message": "Что дальше?",
+        "workflow_state": "failed",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      },
+      "actual_response": {
+        "intent": "next_step"
+      },
+      "match": true,
+      "elapsed_seconds": 0.33428299999991395
+    },
+    {
+      "id": "ambiguous_request",
+      "request": {
+        "message": "Мне это нужно",
+        "workflow_state": "not_started",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "clarify"
+      },
+      "actual_response": {
+        "intent": "clarify"
+      },
+      "match": true,
+      "elapsed_seconds": 0.341941499999848
+    },
+    {
+      "id": "out_of_scope",
+      "request": {
+        "message": "Закажи мне пиццу",
+        "workflow_state": "not_started",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "out_of_scope"
+      },
+      "actual_response": {
+        "intent": "out_of_scope"
+      },
+      "match": true,
+      "elapsed_seconds": 0.4228236999999808
+    },
+    {
+      "id": "chat_yes_is_not_confirmation",
+      "request": {
+        "message": "да",
+        "workflow_state": "awaiting_confirmation",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "clarify"
+      },
+      "actual_response": {
+        "intent": "clarify"
+      },
+      "match": true,
+      "elapsed_seconds": 0.34889369999996234
+    }
+  ],
+  "correct": 7,
+  "total": 7,
+  "limitation": "Known contract examples through actual predictor. Not blind evaluation or a check of backend permissions, confirmation or MCP."
+}

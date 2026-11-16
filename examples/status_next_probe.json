@@ -1,0 +1,448 @@
+{
+  "metadata": {
+    "probe_version": "status-next-alpha-v0.1",
+    "created_at": "2026-11-13",
+    "synthetic": true,
+    "status": "pending_analyst_review",
+    "purpose": "Separate diagnostic challenge for request_status versus next_step; not training data, a dataset split or an independent test.",
+    "counts": {
+      "request_status": 10,
+      "next_step": 10,
+      "clarify": 4,
+      "total": 24
+    },
+    "team_scope": "alpha",
+    "resource": "team_space",
+    "input_fields": [
+      "message",
+      "workflow_state"
+    ],
+    "nonindependent": true,
+    "frozen": false,
+    "exact_user_phrases": [
+      "какой статус?",
+      "что мне делать дальше?"
+    ],
+    "minimal_pairs": [
+      {
+        "workflow_state": "pending_approval",
+        "case_ids": [
+          "status-exact-01",
+          "next-exact-01"
+        ]
+      },
+      {
+        "workflow_state": "unknown",
+        "case_ids": [
+          "status-exact-02",
+          "next-exact-02"
+        ]
+      },
+      {
+        "workflow_state": "submitting",
+        "case_ids": [
+          "status-exact-03",
+          "next-exact-03"
+        ]
+      },
+      {
+        "workflow_state": "failed",
+        "case_ids": [
+          "status-exact-04",
+          "next-exact-04"
+        ]
+      }
+    ],
+    "repeated_phrase_groups": [
+      {
+        "message": "какой статус?",
+        "case_ids": [
+          "status-exact-01",
+          "status-exact-02",
+          "status-exact-03",
+          "status-exact-04"
+        ]
+      },
+      {
+        "message": "что мне делать дальше?",
+        "case_ids": [
+          "next-exact-01",
+          "next-exact-02",
+          "next-exact-03",
+          "next-exact-04"
+        ]
+      }
+    ],
+    "normalized_overlaps_with_existing_files": [],
+    "provenance": "Newly authored synthetic challenge cases plus two explicitly requested literal user phrases repeated across states. No dataset rows were copied. Wording novelty does not imply semantic independence.",
+    "limitations": [
+      "24 cases contain 18 distinct literal messages. The two short user phrases each occur four times across states; cases must not be counted as independent observations.",
+      "Other cases remain semantically close to the main dataset because they probe the same narrow access scenario; exact overlap checking is not semantic leakage checking.",
+      "clarify-new-01 and clarify-new-02 request both labels. Clarify is a provisional policy choice because the output allows one intent and no priority rule is approved.",
+      "No real model results, quality claims, approval or training are implied by this probe.",
+      "Intent is not permission. Status may truthfully report no existing request; next_step must obey backend state; chat never confirms a draft or sends a request."
+    ]
+  },
+  "cases": [
+    {
+      "id": "status-exact-01",
+      "request": {
+        "message": "какой статус?",
+        "workflow_state": "pending_approval",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "status-exact-02",
+      "request": {
+        "message": "какой статус?",
+        "workflow_state": "unknown",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "status-exact-03",
+      "request": {
+        "message": "какой статус?",
+        "workflow_state": "submitting",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "status-exact-04",
+      "request": {
+        "message": "какой статус?",
+        "workflow_state": "failed",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "status-new-01",
+      "request": {
+        "message": "Есть уже какая-нибудь моя заявка на доступ? Хочу узнать её состояние.",
+        "workflow_state": "not_started",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "status-new-02",
+      "request": {
+        "message": "Черновик ждёт подтверждения; в каком состоянии сейчас моя заявка?",
+        "workflow_state": "awaiting_confirmation",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "status-new-03",
+      "request": {
+        "message": "В карточке отменённой заявки какое состояние сохранено сейчас?",
+        "workflow_state": "cancelled",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "status-new-04",
+      "request": {
+        "message": "Хочу увидеть текущее положение моего запроса в процессе согласования.",
+        "workflow_state": "pending_approval",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "status-new-05",
+      "request": {
+        "message": "Нужен установленный сервисом исход отправки, а не предположение: что с моей заявкой?",
+        "workflow_state": "unknown",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "status-new-06",
+      "request": {
+        "message": "Сведения о передаче моей заявки обновились? Покажи текущее состояние.",
+        "workflow_state": "submitting",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      }
+    },
+    {
+      "id": "next-exact-01",
+      "request": {
+        "message": "что мне делать дальше?",
+        "workflow_state": "pending_approval",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "next-exact-02",
+      "request": {
+        "message": "что мне делать дальше?",
+        "workflow_state": "unknown",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "next-exact-03",
+      "request": {
+        "message": "что мне делать дальше?",
+        "workflow_state": "submitting",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "next-exact-04",
+      "request": {
+        "message": "что мне делать дальше?",
+        "workflow_state": "failed",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "next-new-01",
+      "request": {
+        "message": "Процесс доступа ещё не начинался. Какое первое действие нужно сделать мне?",
+        "workflow_state": "not_started",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "next-new-02",
+      "request": {
+        "message": "Карточка черновика передо мной. Какое действие теперь требуется от меня?",
+        "workflow_state": "awaiting_confirmation",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "next-new-03",
+      "request": {
+        "message": "После отмены какой допустимый шаг поможет продолжить процесс доступа?",
+        "workflow_state": "cancelled",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "next-new-04",
+      "request": {
+        "message": "Моя заявка находится у согласующего. Чем мне заняться дальше в этом процессе?",
+        "workflow_state": "pending_approval",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "next-new-05",
+      "request": {
+        "message": "Исход отправки не установлен. Как действовать, чтобы не создать дубликат?",
+        "workflow_state": "unknown",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "next-new-06",
+      "request": {
+        "message": "В карточке ошибка оформления. Подскажи безопасное следующее действие для меня.",
+        "workflow_state": "failed",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      }
+    },
+    {
+      "id": "clarify-new-01",
+      "request": {
+        "message": "Покажи статус моей заявки и объясни, что мне делать после него.",
+        "workflow_state": "pending_approval",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "clarify-new-02",
+      "request": {
+        "message": "Проверь, что с заявкой, а ещё подскажи мой следующий шаг.",
+        "workflow_state": "unknown",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "clarify-new-03",
+      "request": {
+        "message": "Результат или дальнейшие действия? Я пока не выбрал, что хочу узнать.",
+        "workflow_state": "awaiting_confirmation",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "clarify"
+      }
+    },
+    {
+      "id": "clarify-new-04",
+      "request": {
+        "message": "Я про эту историю с доступом, ну ты понял.",
+        "workflow_state": "not_started",
+        "actor_context": {
+          "user_id": "synthetic_probe_alpha_1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "clarify"
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "fixture_type": "synthetic_expected_outputs_not_predictions",
+  "team": "alpha",
+  "cases": [
+    {
+      "id": "explain_alpha",
+      "request": {
+        "message": "Как получить доступ?",
+        "workflow_state": "not_started",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "explain_access"
+      },
+      "expected_backend_behavior": {
+        "action": "none",
+        "requires_confirmation": false,
+        "expected_source_id": "demo_access_alpha_v1"
+      }
+    },
+    {
+      "id": "prepare_request",
+      "request": {
+        "message": "Подготовь заявку на доступ",
+        "workflow_state": "not_started",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_access"
+      },
+      "expected_backend_behavior": {
+        "action": "prepare_draft",
+        "requires_confirmation": true,
+        "expected_source_id": "demo_access_alpha_v1"
+      }
+    },
+    {
+      "id": "status_pending",
+      "request": {
+        "message": "Какой статус моей заявки?",
+        "workflow_state": "pending_approval",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "request_status"
+      },
+      "expected_backend_behavior": {
+        "action": "read_status",
+        "requires_confirmation": false,
+        "expected_source_id": "demo_access_alpha_v1"
+      }
+    },
+    {
+      "id": "next_step_failed",
+      "request": {
+        "message": "Что дальше?",
+        "workflow_state": "failed",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "next_step"
+      },
+      "expected_backend_behavior": {
+        "action": "show_next_step",
+        "requires_confirmation": false,
+        "expected_source_id": "demo_access_alpha_v1"
+      }
+    },
+    {
+      "id": "ambiguous_request",
+      "request": {
+        "message": "Мне это нужно",
+        "workflow_state": "not_started",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "clarify"
+      },
+      "expected_backend_behavior": {
+        "action": "ask_clarification",
+        "requires_confirmation": false,
+        "expected_source_id": null
+      }
+    },
+    {
+      "id": "out_of_scope",
+      "request": {
+        "message": "Закажи мне пиццу",
+        "workflow_state": "not_started",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "out_of_scope"
+      },
+      "expected_backend_behavior": {
+        "action": "refuse",
+        "requires_confirmation": false,
+        "expected_source_id": null
+      }
+    },
+    {
+      "id": "chat_yes_is_not_confirmation",
+      "request": {
+        "message": "да",
+        "workflow_state": "awaiting_confirmation",
+        "actor_context": {
+          "user_id": "demo-intern-1",
+          "team_id": "alpha",
+          "role": "intern"
+        }
+      },
+      "expected_response": {
+        "intent": "clarify"
+      },
+      "expected_backend_behavior": {
+        "action": "ask_clarification",
+        "requires_confirmation": true,
+        "expected_source_id": null
+      }
+    }
+  ]
+}

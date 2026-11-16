@@ -1,0 +1,12 @@
+.git
+.cache
+.models
+.venv
+**/__pycache__
+web/node_modules
+web/dist
+web/coverage
+reports
+*.cover
+*.sqlite3*
+*.mp4

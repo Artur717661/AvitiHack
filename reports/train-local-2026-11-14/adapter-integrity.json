@@ -1,0 +1,9 @@
+{
+  "base": "Qwen/Qwen3-1.7B",
+  "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "format": "safetensors",
+  "sha256": "4835ad9ec10b0b45d5511f2d7f490f03224bba96a2a9f606f1ef631ac3b0df09",
+  "lora_rank": 8,
+  "tensor_count": 112,
+  "integrity": "verified"
+}

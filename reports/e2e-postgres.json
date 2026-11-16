@@ -1,0 +1,16 @@
+{
+  "open_draft_ms": 73,
+  "request_id": "REQ-00fdf1ea1a5b",
+  "checks": [
+    "login",
+    "source",
+    "draft",
+    "confirm",
+    "reload",
+    "same status in chat",
+    "same-team isolation",
+    "cross-team isolation",
+    "mobile submission",
+    "mobile width"
+  ]
+}
