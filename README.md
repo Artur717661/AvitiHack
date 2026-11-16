@@ -56,14 +56,16 @@ Go проверяет команду и владельца, ведёт черн�
 
 Опциональный режим использует адаптер Артемия из репозитория. Перед первым запуском скрипт скачивает около 4 ГБ официальных весов **Qwen/Qwen3-1.7B** с Hugging Face по фиксированной ревизии и сверяет SHA-256. Для загрузки не нужен ключ. При обрыве повтори команду скачивания.
 
-Команды для PowerShell с Python 3.12:
+Команды для PowerShell с Python 3.12 и CPU:
 
 ```powershell
 python -m venv .venv
-& ./.venv/Scripts/python.exe -m pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cpu
+& ./.venv/Scripts/python.exe -m pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
 & ./.venv/Scripts/python.exe -m pip install -r requirements-ml.txt
 & ./.venv/Scripts/python.exe tools/download_base_model.py
 $env:BUDDY_ROUTER_KEY = 'local-demo-router'
+$env:OMP_NUM_THREADS = '4'
+$env:MKL_NUM_THREADS = '4'
 & ./.venv/Scripts/python.exe -m ml.service
 ```
 
